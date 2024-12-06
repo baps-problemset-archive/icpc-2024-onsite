@@ -1,0 +1,51 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+
+% * <Raihat Zaman Neloy> 17:03:59 14 Mar 2024 UTC+0000:
+% Nothing here!
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{setspace}
+\usepackage{pgffor}
+\usepackage{titlesec}
+
+\newcommand{\code}[1]{
+    \texttt{#1}
+}
+
+\setlength\parindent{0pt}
+\setlength\parskip{8pt}
+\titlespacing*{\section} {0pt}{0ex}{0ex}
+
+% Define Problem ID and Problem Names.
+\def\problems{
+    A/Demo Problem/demo-problem}
+
+\begin{document}
+\foreach \x\y\z in \problems {
+    \begin{table}[]
+        \begin{tabular}{
+            >{\columncolor[HTML]{9B9B9B}}p{2.5cm}
+            >{\columncolor[HTML]{C0C0C0}}p{12.2cm}
+            >{\columncolor[HTML]{9B9B9B}\centering\arraybackslash}p{2.5cm}}
+            % Format of the first cell to include logo %
+
+             &
+            % Formatting the second cell to include problem ID and name
+            \makecell*{\raisebox{-.3\height}{\scalebox{1.35}{Problem \x}} \\ \\
+                \textbf{\scalebox{1.5}{\y}}}
+             &
+            % Formating third cell to include BAPS logo %
+            \raisebox{-.4\height}{\includegraphics[scale=0.09]{baps}}     \\
+        \end{tabular}
+    \end{table}
+    \input{\z/statement}
+
+    \pagebreak
+}
+\end{document}

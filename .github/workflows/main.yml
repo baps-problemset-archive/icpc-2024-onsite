@@ -1,0 +1,25 @@
+name: LateX to PDF
+
+on:
+  push:
+    branches: 
+      - main
+permissions:
+  contents: write
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: compiledStatement.tex
+      - name: Commit generated PDF
+        run: |
+          git config --global user.name 'Bangladesh Association of Problem Setters'
+          git config --global user.email 'baps-bgd@github.io'
+          git add -f compiledStatement.pdf
+          git commit -m "Generated pdf"
+          git push
