@@ -1,9 +1,7 @@
 name: LateX to PDF for PR
 
 on:
-  push:
-    branches: 
-      - main
+    pull_request:
 permissions:
   contents: write
 jobs:
