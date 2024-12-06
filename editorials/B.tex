@@ -5,3 +5,28 @@ Tester: Rumman Mahmud, Pritom Kundu, Jubayer Rahman, Nafis Sadique \\
 Cetegory: Dynamic Programming, Bit Manipulation \\
 Total Solved:  \\
 First to Solve: \\
+
+We know that $x \& y \le \min(x, y)$ and $\gcd(x, y) \le \min(x, y)$.
+
+So $\gcd(x \oplus y, x \& y) \le \min(x \oplus y, x \& y) \le \min(x, y)$.
+
+Also notice that $i$ can be equal to $j$, so it looks like the answer is $\max({a_1, a_2, \ldots, a_n})$ because this is the maximum possible $\gcd$.
+
+But this is wrong due to the case when $x = 0$ or $y = 0$ because then $\gcd(x, y) = x$ when $y = 0$ and $\gcd(x, y) = y$ when $x = 0$.
+
+So when $a_i \oplus a_j = 0$, we have $a_i = a_j$, so $\gcd(a_i \oplus a_j, a_i \& a_j) = \gcd(0, a_i \& a_i) = \gcd(0, a_i) = a_i$.
+So for this case we need to take care of the maximum number of the array only.
+
+And when $a_i \& a_j = 0$, we have $a_i \oplus a_j = a_i + a_j$ because there is no common bit in $a_i$ and $a_j$
+so xor and addition are the same in this case.
+
+So we need to find the maximum $a_i + a_j$ where $a_i \& a_j = 0$. So let's fix $a_i$
+and then find the maximum $a_j$ such that $a_i \& a_j = 0$ which means we 
+need to find the maximum $a_j$ such that $a_j$ is a submask of the flipped bits of $a_i$.
+
+Finding the maximum submask of a mask that exists in the array is a standard problem that can be solved
+using Sum Over Subsets (SOS) DP. We can also find the count of such submasks using the same DP.
+
+So overall we need to consider the maximum element of the array and the maximum sum of two elements such that there is no common bit between them.
+
+Time Complexity: $O(m \cdot 2^m)$ where $m$ is the number of bits in the maximum element of the array which is bounded by $23$.
