@@ -14,6 +14,9 @@ jobs:
     if: github.event.pull_request.merged == true || github.event.pull_request.state == 'closed'  # Check for merge or closed state
 
     steps:
+      - name: Run delete branch
+        run: |
+          git branch -d review-artifact-${{ github.event.pull_request.number }}
       - name: Delete Temporary Branch
         uses: devops-infra/action-delete-branch@v0.7.0
         with:
