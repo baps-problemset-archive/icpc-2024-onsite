@@ -1,2 +1,2 @@
-# contest-problemset-example
-Example of problem-set compilation and how a setter should contribute through pull requests.
+# ICPC Dhaka Regional Onsite 2024
+Problem set archive.
