@@ -23,7 +23,7 @@ jobs:
           git checkout -b $TEMP_BRANCH
           git add editorial.pdf
           git commit -m "Add generated PDF for review"
-          git push origin $TEMP_BRANCH
+          git push -f origin $TEMP_BRANCH
       - name: Comment on PR with File Link
         uses: actions/github-script@v6
         with:
