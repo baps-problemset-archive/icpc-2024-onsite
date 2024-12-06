@@ -18,7 +18,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: pdf-for-comment
-          path: pr-output.pdf
+          path: output.pdf
       - name: Generate Link and Comment
         uses: actions/github-script@v6
         with:
