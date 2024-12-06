@@ -11,7 +11,7 @@ For the binary search approach, we can search for the closest income that genera
 
 Special case: For 0, any value between 0 and 12500 is accepted.
 
-```
+\begin{verbatim
 double binarySearch(double target) {
     double low = 12500;
     double high = 3e9;
@@ -27,7 +27,7 @@ double binarySearch(double target) {
     }
     return low;
 }
-```
+\end{verbatim}
 
 For the math-based solution, we calculate the income range where the salary falls by precomputing the tax for each range. For example, for an income of 50,000, the tax is 7,500.00, and for 125,000, the tax is 42,500.00. By comparing the input tax with these precomputed values, the target salary can be directly determined.
 
