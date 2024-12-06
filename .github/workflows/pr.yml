@@ -15,19 +15,24 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: editorial.tex
-      - name: Upload PDF to Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: pdf-for-comment
-          path: output.pdf
-      - name: Generate Link and Comment
+      - name: Push PDF to Temporary Branch
+        run: |
+          TEMP_BRANCH="review-artifact-${{ github.event.pull_request.number }}"
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git checkout -b $TEMP_BRANCH
+          git add editorial.pdf
+          git commit -m "Add generated PDF for review"
+          git push origin $TEMP_BRANCH
+      - name: Comment on PR with File Link
         uses: actions/github-script@v6
         with:
           script: |
-            const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts`;
+            const branchName = `review-artifact-${{ github.event.pull_request.number }}`
+            const fileUrl = `https://github.com/${{ github.repository }}/blob/${branchName}/editorial.pdf`
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
-              body: `The generated PDF is ready for review. [Download PDF](${artifactUrl})`
+              body: `The generated PDF for review is available on the branch [${branchName}](${fileUrl}). You can view it [here](${fileUrl}).`
             });
