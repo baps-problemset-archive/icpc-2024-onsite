@@ -14,6 +14,8 @@ jobs:
     if: github.event.pull_request.merged == true || github.event.pull_request.state == 'closed'  # Check for merge or closed state
 
     steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
       - name: Run delete branch
         run: |
           git branch -d review-artifact-${{ github.event.pull_request.number }}
