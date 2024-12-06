@@ -1,0 +1,14 @@
+\section*{Problem L: Unhappy Team}
+Problem Setter: Nafis Sadique \\
+Tester: Shahjalal Shohag, Rumman Mahmud, Jubayer Rahman \\
+Cetegory: Dynamic Programming \\
+Total Solved:  \\
+First to Solve: \\
+\\ 
+The trick is to select the unhappiness score of someone and count how many times that score appear
+in the top K values. We can keep a DP state $(bit\_mask, bigger\_scores\_count, selected\_score\_appeared)$.
+Basically we will put people one after another, everytime calculating their unhappiness score. If the 
+score is smaller than the selected score then we ignore it. If the score is bigger then $bigger\_scores\_count$
+is incremented by one. If the score is the same is the selected score then we can consider it as bigger or 
+mark $selected\_score\_appeared$ as $true$. This DP will have the complexity of $O(2^n\cdot n^3)$. With some
+other minor optimizations, this runs reasonably fast.

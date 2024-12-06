@@ -1,0 +1,23 @@
+\section*{Problem D. CatGPT}
+Problem Setter: Anik Sarker \\
+Tester: Rumman Mahmud, Pritom Kundu, Nafis Sadique \\
+Cetegory: Graph, Offline Processing \\
+Total Solved:  \\
+First to Solve: \\
+\\
+There can be only 26 clowders. We can use this information. First, lets process
+all the event in the ascending order of $R_i$. We then process the cats from left
+to right. After processing each cat we keep in memory the most recent position we 
+saw a cat of clowder $C_i$. Then we process the events ended at the current position.
+Because we know the last position for the clowder, we know that event will merge
+clowders that have their $last\ position > L_i$. We keep the list of merged clowders
+for the event in memory as well.\\
+\\
+For the queries, we also process them in the ascending order of $y_i$. But this time we 
+iterate over the events from left to right. Since we know for an event, the clowders that
+will be merged, we can generate a list of unordered $(i,j)$ pairs that will be merged for
+an event. There can't be more than $\frac{25 \cdot 26}{2}$ pairs. We keep track of the last event
+they were merged, similar to the previous section. Finally for an event, we process the 
+queries that ended in that event. From the list of the last position of the pairs, we
+can have a graph of 26 vertices. We merge vertices using union-find. Then we check the largest
+merged clowder and output their size.
