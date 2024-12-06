@@ -20,6 +20,6 @@ jobs:
         run: |
           git config --global user.name 'Bangladesh Association of Problem Setters'
           git config --global user.email 'baps-bgd@github.io'
-          git add -f compiledStatement.pdf
+          git add -f editorial.pdf
           git commit -m "Generated pdf"
           git push
