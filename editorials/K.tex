@@ -1,0 +1,33 @@
+\section*{Problem K: Packet Transmission}
+Problem Setter: Ashraful Islam \\
+Tester: Pritom Kundu, Nafis Sadique \\
+Cetegory: Least Common Ancestor \\
+Total Solved:  \\
+First to Solve: \\
+\\
+Every query we receive can be classified in the following way.
+\begin{itemize}
+    \item The query packets (source, destination pair) share a common path in the tree. 
+    \begin{itemize}
+        \item The packets are going in the same direction. In that case we need to assume one of the
+        packets will never wait. So, the other packet will arrive at the first vertex of the common path,
+        wait for the first packet to arrive and then go after it. Since an edge can't be used by
+        multiple packets at the same time, the other packet will have to wait until the first packet 
+        crossed that edge. Keep doing that until they reach the end of common path and then they can 
+        go their own ways. If we think carefully, we can see that the other packet will have to wait
+        an additional time totalling the maximum edge cost on the common path. However if the first
+        packet comes early then the wait time reduces. Do the same the other way around and take
+        the minimum of the two.
+        \item The packets are going in the different directions. So, we need both packets to start
+        their journey. Eventually they might meet on the two sides of an edge where if one starts crossing,
+        the other must wait. Make one of them wait and the other one go and calculate the time it would 
+        take for both them to reach their destinations. Do it both ways and take the minimum time. However if
+        they don't meet at the edge then they don't have to stop and their actual time to reach both 
+        their destinations is the answer. 
+    \end{itemize}
+    \item The query packets use completely different paths. In that case the time it takes for both to reach
+    their destination is the answer.
+\end{itemize}
+We can calculate all of these using Sparse Table to calculate Least Common Ancestors in a tree. Alternatively 
+we can use heavy-light decomposition, but that may be very slow. There are lot of corner cases, so careful 
+implementation is necessary.
