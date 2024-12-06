@@ -15,7 +15,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: compiledStatement.tex
+          root_file: editorial.tex
       - name: Commit generated PDF
         run: |
           git config --global user.name 'Bangladesh Association of Problem Setters'
