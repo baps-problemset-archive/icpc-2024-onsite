@@ -4,3 +4,20 @@ Tester: Pritom Kundu, Jubayer Rahman, Nafis Sadique \\
 Cetegory: Data Structure, Math, Probability \\
 Total Solved:  \\
 First to Solve: \\
+The strategies are in Nash equilibrium. Therefore, Alice cannot improve her strategy. She will have the same expected points for any index. Let this expected value be $X$. Let $p_1, p_2, \dots, p_N$ be Bob's strategy. Then for all $i$:
+$$ A_i \cdot (1 - p_i) = X $$
+Adding this equation over all $i$ gives:
+$$ X = \frac{n - 1}{\sum_{i=1}^N \frac{1}{A_i}}. $$
+Alice needs to increase $X$. Reducing $\sum_{i=1}^N \frac{1}{A_i}$ will increase $X$. It can be proved that Alice always increments the smallest $A_i$. To implement this efficiently, we will build a persistent segment tree on the array values. The $j$th root of the segment tree will account for array elements in the range $[1, j]$. The tree maintains the following:
+\begin{itemize}
+    \item The sum of all $A_i$ values in the range.
+    \item The sum of inverses of $A_i$ in the range.
+    \item The count of elements available in the range.
+\end{itemize}
+We will walk the segment tree from the root for the $(L-1)$-th element and the root of the $R$-th element. During this traversal, we will maintain:
+\begin{itemize}
+    \item How much of $K$ is left.
+    \item The value and count of the small numbers that have been incremented.
+\end{itemize}
+On a segment tree node we can check if the whole subtree can be incremented to its maximum in $O(1)$ and also get the sum of inverses in $O(1)$ if $K$ depletes.
+The complexity is $QlogN$. However we have allowed slower $Qlog^2N$ and $Qlog^3N$ solutions.
