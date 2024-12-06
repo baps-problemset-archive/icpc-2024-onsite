@@ -1,0 +1,34 @@
+name: LateX to PDF for PR
+
+on:
+  push:
+    branches: 
+      - main
+permissions:
+  contents: write
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: editorial.tex
+      - name: Upload PDF to Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdf-for-comment
+          path: pr-output.pdf
+      - name: Generate Link and Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts`;
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `The generated PDF is ready for review. [Download PDF](${artifactUrl})`
+            });
