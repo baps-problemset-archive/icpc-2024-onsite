@@ -2,5 +2,12 @@
 Problem Setter: Hasinur Rahman \\
 Tester: Nafis Sadique \\
 Cetegory: Hashing, Divide \& Conquer \\
-Total Solved:  \\
-First to Solve: \\
+Total Solved: 0 \\
+First to Solve: N/A \\
+
+To solve this problem, we need to express the shapes of the trees as a hash value. We need to design the hash function so that it will remain consistent about the tree structure whether we calculate it from the whole flower or while merging it.\\
+\textbf{About the hash function:} We will calculate the hash of the structure depending on the LRU path-string of the preorder traversal of a flower. Here, 'L' = Left child traversal from parent, 'R' = Right child traversal from the parent, 'U' = Getting back to the parent after visiting all its children. It will ensure a uniquely shaped tree traversal. Note that, if you don't include the 'U', it will not express a unique shape.\\
+\textbf{About the flower merging:} Let's say two flowers A, and B are getting merged. B will be the child of the leftmost leftless node of A. First, we will divide the  hash of A into two parts, LeftHash and RightHash and we know the hash of the structure of A. Now, think about how to merge them to get the hash of the merged structure.\\
+\textbf{About tracking Unique Shapes:} For each tree, we need to maintain a set of hash values. While merging, If there are two sets $S_{1}$ and $S_{2}$, we need to merge them following the rule: Always merge the light set and the heavy set. This will lead to better-amortized complexity.\\
+\textit{Time complexity: $\mathcal{O}(N\times\lg{N})$}\\
+\textit{Memory complexity: $\mathcal{O}(N)$}\\
