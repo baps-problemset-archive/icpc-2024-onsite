@@ -7,7 +7,7 @@ First to Solve: \\
 \\
 This problem can be solved either purely through math or by using binary search combined with a bit of math. \\
 \\
-For the binary search approach, we can search for the closest income that generates the given tax. The search boundary is adjusted based on the difference between the tax calculated for our current value and the input tax. The lower bound of the search is 12,500, and the upper bound is approximately \(\sim 3 \times 10^9\). With the given constraints, we found that 500 iterations are sufficient to produce the accepted output.\\
+For the binary search approach, we can search for the closest income that generates the given tax. The search boundary is adjusted based on the difference between the tax calculated for our current value and the input tax. The lower bound of the search is 12,500, and the upper bound is approximately \(\sim 3 \times 10^9\). With the given constraints, we found that 60 iterations are sufficient to produce the accepted output.\\
 \\
 Special case: For 0, any value between 0 and 12500 is accepted.\\
 \\
@@ -15,8 +15,8 @@ Special case: For 0, any value between 0 and 12500 is accepted.\\
 double binarySearch(double target) {
     double low = 12500;
     double high = 3e9;
-    int trial = 500;
-    while(low <= high && trial--> 0) {
+    int iterations = 60;
+    while(low <= high && iterations-- > 0) {
         double mid = (low + high) / 2;
         double tax = calculateTax(mid);
         if(tax > target) {
@@ -30,5 +30,5 @@ double binarySearch(double target) {
 \end{verbatim}
 
 For the math-based solution, we can calculate the income range where the salary falls by precomputing the tax for each range. For example, for an income of 50,000, the tax is 7,500.00, and for 125,000, the tax is 42,500.00. By comparing the input tax with these precomputed values, the target salary can be directly determined.\\
+One helpful observation here is that the income range from over 100,000 to 125,000 is effectively taxed at 60%, due to the reduction and taxation of the personal allowance.\\
 \\
-There are also other approaches to solve this problem.\\
