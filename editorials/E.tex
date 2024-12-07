@@ -1,6 +1,13 @@
 \section*{Problem E: Quasi-binary Representations}
 Problem Setter: Pritom Kundu \\
-Tester: Shahjalal Shohag, Pritom Kundu, Jubayer Rahman, Nafis Sadique \\
+Tester: Shahjalal Shohag, Jubayer Rahman, Nafis Sadique \\
 Cetegory: Dynamic Programming, Math \\
 Total Solved:  \\
 First to Solve: \\
+
+Suppose we have placed the first $k$ digits. The number formed the digits by we have placed must be less than or equal to the value formed by first $k$ bits in the binary representation. Suppose, the difference is $d$. We need to make up this difference from the lower bits. The key observation is if $d > k$, then whatever digits we place in the lower position, we cannot make the difference up.
+
+This allows us to do a dp solution. Define $dp[i][x]$ be the number of ways to place the remaining digits assuming that we have placed the first $i$ digits and have a difference of $x$ so far. Then, 
+$$dp[i][x] = \sum_{\substack{0 \leq d \leq k \\ x+d \equiv n_i (mod\ 2)}}^{k}dp[i-1][(x+d-n_i)/2]$$
+
+This solution is $O(k^2 \log n ) $ solution which is not enough. In order to pass optimize transitions to $O(1)$ using prefix sums. Overall time will be $O(k \log n)$ per testcase.
