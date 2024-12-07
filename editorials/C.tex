@@ -10,15 +10,15 @@ Here are some hints before we dive into the actual solution.
 Let’s define a function $P(n,k)$ that returns the number of ways to split $n$ into $k$ partitions 
 where the GCD of the partitions is a prime number.
 \begin{itemize}
-  \item \bf{Hint 1:} How would you solve it if the GCD was $1$ instead of a prime number?
-  \item \bf{Hint 2:} How does changing the GCD to a prime affect $n$?
-  \item \bf{Hint 3:} Define $f(n,k)$ to return the number of ways to split $n$ into $k$
+  \item \textbf{Hint 1:} How would you solve it if the GCD was $1$ instead of a prime number?
+  \item \textbf{Hint 2:} How does changing the GCD to a prime affect $n$?
+  \item \textbf{Hint 3:} Define $f(n,k)$ to return the number of ways to split $n$ into $k$
     partitions where the GCD of the partitions is $1$. Define another function $g(n,k,p)$ to
     return the number of ways to split $n$ into $k$ partitions where the GCD of the partitions
     is exactly $p$ (with $p$ being prime). Can you draw a relation between $g(n,k,p)$ and $f(\frac{n}{p},k)$?
 \end{itemize}
 
-{\bf{Solution}} \\
+{\textbf{Solution}} \\
 A valid split will have a prime GCD. Let’s say the GCD of a valid sequence is $p$. 
 This means each partition will be a multiple of $p$. If we divide each partition by $p$, 
 the new sequence will have GCD $1$. The GCD cannot be greater than $1$, 
@@ -32,16 +32,16 @@ $n$ into $k$ partitions with a GCD of $1$. The Möbius function
 and binomial coefficients can be used for this computation. 
 Details are left as an exercise. \\
 \\
-{\bf{Complexity}}
+{\textbf{Complexity}}
 \begin{itemize}
-  \item \bf{Precomputing unique prime factors of all numbers:} $O(N \log N)$
-  \item \bf{Precomputing factorial and inverse factorials modulo $M$:} $O(N + \log M)$
-  \item \bf{Complexity of finding valid partitions per test case:} 
+  \item \textbf{Precomputing unique prime factors of all numbers:} $O(N \log N)$
+  \item \textbf{Precomputing factorial and inverse factorials modulo $M$:} $O(N + \log M)$
+  \item \textbf{Complexity of finding valid partitions per test case:} 
   For each prime factor $p_i$, finding splits with GCD $1$ has a complexity of 
   $O(2^{\omega(\frac{n}{p_i})})$. Repeating this for all unique prime 
   factors of $n$ gives $O(\sum_{p \in U(n)} 2^{\omega(\frac{n}{p})})$, 
   where $\omega(n)$ is the number of unique prime factors of $n$.
-  \item \bf{Overall complexity:} $O(N \log N + T \cdot \sum_{p \in U(n)} 2^{\omega(\frac{n}{p})})$
+  \item \textbf{Overall complexity:} $O(N \log N + T \cdot \sum_{p \in U(n)} 2^{\omega(\frac{n}{p})})$
 \end{itemize}
 The maximum number of unique primes is $7$. For example, the product of the first 
 $7$ primes is $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 \cdot 17 = 510510$. 
@@ -50,7 +50,7 @@ $\sum_{p \in U(n)} 2^{\omega(\frac{n}{p})}$ is $7 \cdot 2^6 = 448$.
 Which means, per query you will need to perform 448 operations in the worst case. 
 Which is good enough for the TL. \\
 \\
-{\bf{Bonus}} \\
+{\textbf{Bonus}} \\
 We can further reduce the complexity by only considering the 
 divisors of n that have at most one square prime factor. 
 We need to modify the Mobius function a bit to achieve that. 

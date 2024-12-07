@@ -5,7 +5,7 @@ Cetegory: Ad-hoc\\
 Total Solved: 0 \\
 First to Solve: N/A \\
 \\
-We can split the problem is two subproblem.
+We can split the problem into two subproblems.
 \paragraph*{When $ans < 32$.}
 How do we solve it? First for each vertex calculate the list of vertex reachable from it. Also
 calculate the list of vertex from which it is reachable. Both can be done in $O(\frac{max(n) \cdot m}{64})$ using bitsets.
@@ -13,7 +13,7 @@ Now assume that vertex $a$ is reachable from vertex $b$. In that case vertices $
 adding an edge of cost 1. We can find all the vertices from which vertex $a$ is reachable with 1 cost by simply
 binary shifting the bitset by 1 in both direction and apply the bitwise OR operator on all three (no change, left shift, right shift).
 If we do this again then we find the vertices 2 distance away and so on. We keep doing this for distances upto 31. The
-complexity to do this is $O(\frac{n^2*32}{64})$. 
+complexity to do this is $O(\frac{n^2 \cdot 32}{64})$. 
 \\
 \\
 Now, lets split the bitsets into $64$ sized buckets. Technically we could've used an unsigned long long array to perform
@@ -24,10 +24,10 @@ can do that by simply performing a bitwise AND operation. If there is a match th
 no match is found then we move to the next bucket. At the end in this approach we will need $O(\frac{n}{64}+32)$ operations
 per query.
 \paragraph*{When $ans \ge 32$.}
-We again keep a bucket of vertices reachable from a vertex. Vertices numbered from [1..64] are in one bucket, [65, 128] are 
+We again keep a bucket of vertices reachable from a vertex. Vertices numbered from [1..64] are in one bucket, [65..128] are 
 in second buckets and so on. For each bucket we only keep the minimum and maximum id of the vertex reachable from it. Similarly we do it 
 for the upstream vertices. For a query, we merge those two list of vertices (min and max of each bucket), sort them and find the
-smallest gap in consecutive vertices (one must be upstream while the other must be downstream). This takes $O(\frac{n*2}{64})$ per
+smallest gap in consecutive vertices (one must be upstream while the other must be downstream). This takes $O(\frac{2 \cdot n}{64})$ per
 query.
 \\ 
 \\

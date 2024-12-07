@@ -8,14 +8,14 @@ First to Solve: MBSTU\_Novatos \\
 
 We know that $x \& y \le \min(x, y)$ and it looks like $\gcd(x, y) \le \min(x, y)$.
 
-So $\gcd(x \oplus y, x \& y) \le \min(x \oplus y, x \& y) \le \min(x, y)$.
+So, it looks like $\gcd(x \oplus y, x \& y) \le \min(x \oplus y, x \& y) \le \min(x, y)$.
 
 Also notice that $i$ can be equal to $j$, so it looks like the answer is $\max({a_1, a_2, \ldots, a_n})$ because this is the maximum possible $\gcd$.
 
 But this is wrong due to the case when $x = 0$ or $y = 0$ because then $\gcd(x, y) = x$ when $y = 0$ and $\gcd(x, y) = y$ when $x = 0$.
 
-So when $a_i \oplus a_j = 0$, we have $a_i = a_j$, so $\gcd(a_i \oplus a_j, a_i \& a_j) = \gcd(0, a_i \& a_i) = \gcd(0, a_i) = a_i$.
-So for this case we need to take care of the maximum number of the array only.
+So, when $a_i \oplus a_j = 0$, we have $a_i = a_j$, so $\gcd(a_i \oplus a_j, a_i \& a_j) = \gcd(0, a_i \& a_i) = \gcd(0, a_i) = a_i$.
+So, for this case we need to take care of the maximum number of the array only.
 
 And when $a_i \& a_j = 0$, we have $a_i \oplus a_j = a_i + a_j$ because there is no common bit in $a_i$ and $a_j$
 so xor and addition are the same in this case.
