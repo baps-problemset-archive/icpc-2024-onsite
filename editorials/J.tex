@@ -10,7 +10,6 @@ This problem can be solved either purely through math or by using binary search 
 For the binary search approach, we can search for the closest income that generates the given tax. The search boundary is adjusted based on the difference between the tax calculated for our current value and the input tax. The lower bound of the search is 12,500, and the upper bound is approximately \(\sim 3 \times 10^9\). With the given constraints, we found that 60 iterations are sufficient to produce the accepted output.\\
 \\
 Special case: For 0, any value between 0 and 12500 is accepted.\\
-\\
 \begin{verbatim}
 double binarySearch(double target) {
     double low = 12500;
