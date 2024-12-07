@@ -6,9 +6,9 @@ Total Solved: 0 \\
 First to Solve: N/A \\
 \\
 Every query we receive can be classified in the following way.
-\begin{itemize}
+\begin{itemize}[label=\scalebox{1.0}{$\bullet$}]
     \item The query packets (source, destination pair) share a common path in the tree. 
-    \begin{itemize}
+    \begin{itemize}[label=\scalebox{0.5}{$\blacksquare$}]
         \item The packets are going in the same direction. In that case we need to assume one of the
         packets will never wait. So, the other packet will arrive at the first vertex of the common path,
         wait for the first packet to arrive and then go after it. Since an edge can't be used by
