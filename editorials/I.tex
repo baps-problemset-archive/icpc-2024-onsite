@@ -4,3 +4,9 @@ Tester: Shahjalal Shohag, Rumman Mahmud, Raihat Zaman Neloy, Muhiminul Islam Osi
 Cetegory: Ad-hoc \\
 Total Solved:  \\
 First to Solve: \\
+
+According to the problem statement we need to find the smallest $i$ such that
+$max(a[1], a[2], ... , a[i-1]) < a[i] < min(a[i+1], a[i+2], ... a[n]$). To find
+these, we can keep two array where one will track the maximum from $1$ to $i-1$
+and the other array will track the minimum from $i+1$ to $n$. The special cases
+are if such $i$ is the first or last element in the given array.
