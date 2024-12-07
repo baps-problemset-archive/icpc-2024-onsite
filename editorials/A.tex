@@ -25,7 +25,7 @@ no match is found then we move to the next bucket. At the end in this approach w
 per query.
 \paragraph*{When $ans \ge 32$.}
 We again keep a bucket of vertices reachable from a vertex. Vertices numbered from [1..64] are in one bucket, [65, 128] are 
-in second buckets and so on. For each bucket we only keep the minimum id of the vertex reachable from it. Similarly we do it 
+in second buckets and so on. For each bucket we only keep the minimum and maximum id of the vertex reachable from it. Similarly we do it 
 for the upstream vertices. For a query, we merge those two list of vertices (min and max of each bucket), sort them and find the
 smallest gap in consecutive vertices (one must be upstream while the other must be downstream). This takes $O(\frac{n*2}{64})$ per
 query.
