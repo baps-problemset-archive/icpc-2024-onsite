@@ -16,7 +16,7 @@ double binarySearch(double target) {
     double low = 12500;
     double high = 3e9;
     int iterations = 60;
-    while(low <= high && iterations--> 0) {
+    while(low <= high && iterations-- > 0) {
         double mid = (low + high) / 2;
         double tax = calculateTax(mid);
         if(tax > target) {
