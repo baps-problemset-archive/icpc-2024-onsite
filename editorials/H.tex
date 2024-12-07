@@ -5,9 +5,11 @@ Cetegory: Data Structure, Math, Probability \\
 Total Solved:  \\
 First to Solve: \\
 \\
-The strategies are in Nash equilibrium. Therefore, Alice cannot improve her strategy. She will have the same expected points for any index. Let this expected value be $X$. Let $p_1, p_2, \dots, p_N$ be Bob's strategy. Then for all $i$:
+The strategies are in \href{https://en.wikipedia.org/wiki/Nash_equilibrium}{Nash equilibrium}. Therefore, Alice cannot improve her strategy. She will have the same expected points for any index. Let this expected value be $X$. Let $p_1, p_2, \dots, p_N$ be Bob's strategy. Then for all $i$:
 $$ A_i \cdot (1 - p_i) = X $$
-Adding this equation over all $i$ gives:
+$$p_i = 1 - \frac{X}{A_i}$$
+$$1 = \sum_{i=1}^N(1-\frac{X}{A_i})$$
+As sum of $p_i$ is 1. Adding this equation over all $i$ gives:
 $$ X = \frac{N - 1}{\sum_{i=1}^N \frac{1}{A_i}}$$ 
 Which means for range $[L,R]$ the answer is $X = \frac{R-L}{\sum_{i=L}^R \frac{1}{A_i}}$
 Alice needs to increase $X$. Reducing $\sum_{i=1}^N \frac{1}{A_i}$ will increase $X$. It can be proved that Alice always increments the smallest $A_i$. To implement this efficiently, we will build a persistent segment tree on the array values. The $j$th root of the segment tree will account for array elements in the range $[1, j]$. The tree maintains the following:
@@ -23,4 +25,4 @@ We will walk the segment tree from the root for the $(L-1)$-th element and the r
 \end{itemize}
 On a segment tree node we can check if the whole subtree can be incremented to its maximum in $O(1)$ and also get the sum of inverses in $O(1)$ if $K$ depletes.
 
-The complexity is $QlogN$. However we have allowed slower solutions like $Qlog^2N$ and $Qlog^3N$.
+The complexity is $O(QlogN)$. However we have allowed slower solutions like $O(Qlog^2N)$ (using binary search and persistent segment tree), and $O(Qlog^3N)$ (using binary search and merge sort tree).
